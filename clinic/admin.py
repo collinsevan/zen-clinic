@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Service, ServiceOption
+from .models import Service, ServiceOption, Masseuse
 
 
 @admin.register(Service)
@@ -20,3 +20,14 @@ class ServiceOptionAdmin(admin.ModelAdmin):
     list_display = ('service', 'duration', 'price', 'description')
     search_fields = ('service__name', 'description')
     list_filter = ('service',)
+
+
+@admin.register(Masseuse)
+class MasseuseAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for the Masseuse model.
+    Displays name and gender. Includes filters and search.
+    """
+    list_display = ('name', 'gender')
+    list_filter = ('gender',)
+    search_fields = ('name',)

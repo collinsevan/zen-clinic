@@ -84,3 +84,27 @@ class ServiceOption(models.Model):
             raise ValidationError("Price must be a positive number.")
         if self.description.strip() == "":
             raise ValidationError("Option description cannot be empty.")
+
+
+class Masseuse(models.Model):
+    """
+    Represents a masseuse in the clinic with gender information.
+    """
+    GENDER_CHOICES = [
+        ('male', 'Male'),
+        ('female', 'Female'),
+    ]
+    name = models.CharField(max_length=100)
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
+
+    def clean(self):
+        """
+        Validates that name and gender are not blank.
+        """
+        if not self.name.strip():
+            raise ValidationError("Name cannot be blank.")
+        if not self.gender.strip():
+            raise ValidationError("Gender must be selected.")
+
+    def __str__(self):
+        return f"{self.name} ({self.get_gender_display()})"

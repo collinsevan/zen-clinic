@@ -56,3 +56,31 @@ class Service(models.Model):
                 counter += 1
             self.slug = slug
         super().save(*args, **kwargs)
+
+
+class ServiceOption(models.Model):
+    """
+    Represents specific options for a service, such as duration, price,
+    and a unique description to differentiate the options.
+    """
+    service = models.ForeignKey(
+        Service, on_delete=models.CASCADE, related_name='options'
+    )
+    duration = models.PositiveIntegerField(help_text="Duration in minutes")
+    price = models.DecimalField(
+        max_digits=6, decimal_places=2, help_text="Price in Euro(€)"
+    )
+    description = models.TextField(
+        help_text="A unique description for this service option"
+    )
+
+    def __str__(self):
+        return f"{self.service.name} - {self.duration} mins"
+
+    def clean(self):
+        if self.duration <= 0:
+            raise ValidationError("Duration must be a positive number.")
+        if self.price <= 0:
+            raise ValidationError("Price must be a positive number.")
+        if self.description.strip() == "":
+            raise ValidationError("Option description cannot be empty.")

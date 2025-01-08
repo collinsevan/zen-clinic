@@ -19,6 +19,6 @@ from django.urls import path
 from clinic import views as clinic_views
 
 urlpatterns = [
-    path("clinic/", clinic_views.welcome, name='clinic'),
+    path("", clinic_views.base, name='base'),
     path('admin/', admin.site.urls),
 ]

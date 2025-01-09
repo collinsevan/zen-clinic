@@ -1,3 +1,36 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+
+/* Variables */
+:root {
+    --deep-coral-red: #D04A52;
+    --soft-peach: #F9A890;
+    --pale-coral: #FCD5C5;
+    --sky-blue: #B1DFFB;
+    --reflective-blue: #7BAFD4;
+    --dark-water-blue: #4A6D91;
+}
+
+/* General Styling */
+body {
+    font-family: 'Merriweather', serif;
+    background-color: #E8F3FA;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--deep-coral-red);
+}
+
+/* Hero Section Styling */
 .hero {
     height: 100vh;
     background: url('/static/img/rosewater.jpg') rgba(0, 0, 0, 0.3);
@@ -5,33 +38,57 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
 }
 
+.hero h1 {
+    color: #fff !important;
+    text-shadow: 0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.4);
+}
+
+.hero p {
+    color: #fff;
+    text-shadow: 0.05rem 0.05rem 0.2rem rgba(0, 0, 0, 0.4);
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+/* Button Styling */
 .loginbtn {
     background-color: rgba(210, 45, 45, 0.8);
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 4px;
 }
 
 .btn-zenclinic {
-    background-color: rgb(210, 45, 45);
+    background-color: var(--deep-coral-red);
     color: #fff;
     border: none;
     box-shadow: none;
     outline: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    transition: background-color 0.3s;
 }
-
 
 .btn-zenclinic:focus,
 .btn-zenclinic:active {
     box-shadow: none;
     outline: none;
-    background-color: #c12a2a;
+    background-color: var(--soft-peach);
 }
-
 
 .btn-zenclinic:hover {
-    background-color: #c12a2a;
+    background-color: var(--soft-peach);
 }
 
+/* Navbar Styling */
 .navbar-dark .navbar-toggler-icon {
     filter: brightness(200%);
     border: 2px solid #fff;
@@ -41,17 +98,31 @@
 
 .navbar-dark .navbar-brand,
 .navbar-dark .nav-link {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     color: rgba(255, 255, 255, 0.95) !important;
-    text-shadow: .2px .2px .2px rgba(0, 0, 0, 0.5);
+    text-shadow: 0.2px 0.2px 0.2px rgba(0, 0, 0, 0.5);
 }
 
-.navbar.scrolled {
-    background-color: rgba(0, 0, 0, 0.8) !important;
+.navbar {
+    background-color: rgba(74, 109, 145, 0.8);
     transition: background-color 0.3s ease;
 }
 
+.navbar.scrolled {
+    background-color: rgba(74, 109, 145, 0.95) !important;
+}
+
+/* Footer Styling */
 footer.bg-dark {
-    background-color: rgba(0, 0, 0, 0.8) !important;
+    background-color: rgba(74, 109, 145, 0.9) !important;
+    font-family: 'Merriweather', serif;
+    color: #fff;
+}
+
+footer h5 {
+    color: #fff;
+    /* Footer headings now white */
 }
 
 footer a.text-light:hover,
@@ -65,7 +136,8 @@ footer hr.border-light {
     border-top: 1px solid #fff;
 }
 
-@media(max-width: 991px) {
+/* Sidebar Styling */
+@media (max-width: 991px) {
     .sidebar {
         background-color: rgba(255, 255, 255, 0.25);
         backdrop-filter: blur(10px);

@@ -1,5 +1,14 @@
 from django.contrib import admin
-from .models import Service, ServiceOption, Masseuse
+from .models import Service, ServiceOption, Masseuse, ServiceCategory
+
+
+@admin.register(ServiceCategory)
+class ServiceCategoryAdmin(admin.ModelAdmin):
+    """
+    Admin interface for managing service categories.
+    """
+    list_display = ('name', 'description')
+    search_fields = ('name', 'description')
 
 
 @admin.register(Service)
@@ -7,9 +16,11 @@ class ServiceAdmin(admin.ModelAdmin):
     """
     Customizes the admin interface for the Service model.
     """
-    list_display = ('name', 'is_active', 'created_at', 'updated_at')
+    list_display = (
+        'name', 'category', 'is_active', 'created_at', 'updated_at'
+    )
     search_fields = ('name', 'description')
-    list_filter = ('is_active', 'created_at')
+    list_filter = ('is_active', 'created_at', 'category')
 
 
 @admin.register(ServiceOption)

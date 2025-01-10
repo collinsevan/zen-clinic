@@ -3,11 +3,47 @@ from django.utils.text import slugify
 from django.core.exceptions import ValidationError
 
 
+class ServiceCategory(models.Model):
+    """
+    Represents a category of services offered by the clinic.
+
+    Attributes:
+        name (str): The name of the service category.
+        description (str): A brief description of the service category.
+    """
+    name = models.CharField(
+        max_length=100,
+        unique=True,
+        help_text="Enter the name of the service category."
+    )
+    description = models.TextField(
+        blank=True,
+        null=True,
+        help_text="Provide a brief description of the service category."
+    )
+
+    class Meta:
+        verbose_name = "Service Category"
+        verbose_name_plural = "Service Categories"
+
+    def __str__(self):
+        """
+        Returns the name of the service category as its string representation.
+        """
+        return self.name
+
+
 class Service(models.Model):
     """
     Represents a service offered by the clinic, including its name,
     description, active status, slug for URLs, and timestamps.
     """
+    category = models.ForeignKey(
+        ServiceCategory,
+        on_delete=models.CASCADE,
+        related_name='services',
+        help_text="Select the category this service belongs to."
+    )
     name = models.CharField(
         max_length=100,
         unique=True,
@@ -68,7 +104,7 @@ class ServiceOption(models.Model):
     )
     duration = models.PositiveIntegerField(help_text="Duration in minutes")
     price = models.DecimalField(
-        max_digits=6, decimal_places=2, help_text="Price in Euro(€)"
+        max_digits=6, decimal_places=2, help_text="Price in Euro (€)"
     )
     description = models.TextField(
         help_text="A unique description for this service option"
@@ -94,8 +130,15 @@ class Masseuse(models.Model):
         ('male', 'Male'),
         ('female', 'Female'),
     ]
-    name = models.CharField(max_length=100)
-    gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
+    name = models.CharField(
+        max_length=100,
+        help_text="Enter the masseuse's name."
+    )
+    gender = models.CharField(
+        max_length=6,
+        choices=GENDER_CHOICES,
+        help_text="Select the gender of the masseuse."
+    )
 
     def clean(self):
         """

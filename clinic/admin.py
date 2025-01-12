@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Service, ServiceOption, Masseuse, ServiceCategory
+from .models import Service, ServiceOption, Masseuse, ServiceCategory, UserProfile
 
 
 @admin.register(ServiceCategory)
@@ -42,3 +42,16 @@ class MasseuseAdmin(admin.ModelAdmin):
     list_display = ('name', 'gender')
     list_filter = ('gender',)
     search_fields = ('name',)
+
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    """
+    Admin interface for managing UserProfile.
+
+    Attributes:
+        list_display (tuple): Fields displayed in the admin list view.
+        search_fields (tuple): Fields used for searching profiles in admin.
+    """
+    list_display = ('user',)
+    search_fields = ('user__username', 'user__email')

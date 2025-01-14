@@ -21,5 +21,6 @@ from clinic import views as clinic_views
 urlpatterns = [
     path("", clinic_views.home, name='home'),
     path("admin/", admin.site.urls),
+    path("accounts/login/", clinic_views.custom_login_view, name="account_login"),
     path("accounts/", include("allauth.urls")),
 ]

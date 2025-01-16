@@ -1,4 +1,5 @@
 {% load static %}
+{% url 'account_login' as login_url %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +51,7 @@
                         </li>
                     </ul>
                     <div class="d-flex flex-column justify-content-center align-items-center gap-3">
-                        <a href="{% url 'account_login' %}" class="loginbtn text-white text-decoration-none px-3 py-1 rounded-4">
+                        <a href="#login" class="loginbtn text-white text-decoration-none px-3 py-1 rounded-4">
                             Login
                         </a>
                     </div>
